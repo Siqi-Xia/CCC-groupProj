@@ -108,3 +108,4 @@ twitter_stream.filter(locations=bounding_box)  #track=['sleep']   #add hashtag
 # tweets = api.search(q="place:%s" % place_id,count=1000)
 # for tweet in tweets:
 #     print( tweet.text + " | " + tweet.place.name if tweet.place else "Undefined place")
+
