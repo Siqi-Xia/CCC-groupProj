@@ -1,4 +1,5 @@
 
+
 #twitter time
 
 import tweepy
@@ -7,13 +8,15 @@ from tweepy import StreamListener
 from tweepy import OAuthHandler
 import json
 import numpy as np
+from datetime import *
 consumer_key = "Lj4Uykjhmcpi7bsGeZXMxPISk"
 consumer_secret = "6aZ7T4Au0Tv4M2C5p7gCQVapTNy8rcF6kGlAwilculNqcP8fuH"
 access_token = "3074259759-Llu1Uz6SGywiT9P9B7AdkO85t75VMYNwQmtB620"
 access_secret = "nbjVpbWBAChf8RSXVLkMv9PgZPs3C6Cbi3QTYJDtbM5wZ"
 
 TWEET_NUM=5
- 
+filename=datetime.now().strftime("%Y%m%d%H%M%S")+".json"
+print("output file name:",filename)
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
  
@@ -59,7 +62,7 @@ class MyListener(StreamListener):
             
             self.num_tweets+=1
             print("sampled %d data"%self.num_tweets)
-            with open("data2.json","a",encoding="utf-8") as f2:
+            with open(filename,"a",encoding="utf-8") as f2:
                 if self.firstdata!=1:
                     f2.write(",\n")
                 lj=json.loads(data)
@@ -123,13 +126,13 @@ twitter_stream = Stream(auth, MyListener())
 
 print("stream connected!")
 
-with open("data2.json","w",encoding="utf-8") as f2:
+with open(filename,"w",encoding="utf-8") as f2:
     f2.write("{\"total_rows\":%d,\"offset\":0,\"rows\":[\n"%TWEET_NUM)
 
 #its said that filter can search data in 7 days, while api.search can only search data in a much shorter time
 twitter_stream.filter(locations=bounding_box)  #track=['sleep']   #add hashtag
 
-with open("data2.json","a",encoding="utf-8") as f2:
+with open(filename,"a",encoding="utf-8") as f2:
     f2.write("\n]}\n")
 # tweets = api.search(q="place:%s" % place_id,count=1000)
 # for tweet in tweets:
