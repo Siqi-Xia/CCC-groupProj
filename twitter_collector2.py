@@ -15,7 +15,7 @@ access_token = "3074259759-Llu1Uz6SGywiT9P9B7AdkO85t75VMYNwQmtB620"
 access_secret = "nbjVpbWBAChf8RSXVLkMv9PgZPs3C6Cbi3QTYJDtbM5wZ"
 
 TWEET_NUM=10000
-filename=datetime.now().strftime("%Y%m%d%H%M%S")+".json"
+filename="/mnt/couchdb/twitter/"+datetime.now().strftime("%Y%m%d%H%M%S")+".json"
 print("output file name:",filename)
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
