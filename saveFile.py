@@ -10,7 +10,7 @@ def saveFile(server,db,file):
 	f=open(file,"r")
 	if f.mode =='r' :
 		contents = f.read()
-		data = json.loads(contents)
+		data = json.loads(json.dump(contents))
 
 	twitid=str(data["id"])
 	#print(type(twitid))
