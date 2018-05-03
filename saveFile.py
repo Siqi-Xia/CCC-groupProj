@@ -16,7 +16,7 @@ def saveFile(server,db,file):
 	#print(type(twitid))
 
 	not_duplicated = True
-	idmap = list(db.query("idmap/id"))
+	idmap = list(db.query("id/id_str"))
 	for item in idmap:
 		#print(type(item["key"]))
 		if twitid == item["key"]:
