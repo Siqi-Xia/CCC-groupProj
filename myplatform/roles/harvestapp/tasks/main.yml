@@ -1,0 +1,46 @@
+- name: "Update and upgrade apt packages"
+  apt: update_cache=yes cache_valid_time=600
+  tags: appsf
+
+- name: "Installing softwares"
+  apt: name={{ item }} state=present
+  with_items:
+  - python3
+  - python3-pip
+  tags: appsf
+
+- name: "Install pip pkgs"
+  command: 'pip3 install {{ item }}'
+  sudo: yes
+  with_items:
+  - tweepy
+  - numpy 
+  tags: appsf
+
+
+- name: "Create directories"
+  file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
+  with_items:
+  - /doc
+  - /doc/twitter
+  - /mnt/couchdb
+  - /mnt/couchdb/twitters
+  tags: appinstall
+
+
+- name: "Install app files"
+  template: src={{ item }}.j2 dest={{ twitter_app_dir }}/{{ item }}
+  with_items:
+  - twitter_collector.py
+  - twitter_harvest.sh
+  tags: appinstall
+
+- name: "start twitter harvest app in background"
+  shell: cd {{ twitter_app_dir }}; nohup sudo bash twitter_harvest.sh </dev/null >/dev/null 2>&1 &
+  tags: apprun
+
+#- name: "Execute twitter harvest app"
+#  command: 'sudo bash twitter_harvest.sh 2>&1 & chdir={{ twitter_app_dir }}'
+#  tags: apprun
+
+

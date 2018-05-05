@@ -1,0 +1,29 @@
+# This is the default ansible 'hosts' file.
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+# Ex 1: Ungrouped hosts, specify before any group headers.
+[common]
+115.146.86.86
+115.146.86.175
+
+
+[app]
+115.146.86.86
+
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+#[webservers]
+#35.165.79.66
+
+# Ex 3: A collection of database servers in the 'dbservers' group
+
+[couchdb1]
+115.146.86.86
+
+[couchdb2]
+115.146.86.175
+
+
