@@ -3,6 +3,9 @@ import re
 import folium
 from folium.plugins import HeatMap
 import pycouchdb
+import nltk
+nltk.download('vader_lexicon')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 ###############################################################
 # 'aurin_coords' is a list of coordinates that stores vehicle #
@@ -21,7 +24,6 @@ with open(AURIN_FILE) as f:
         if re.match(r'\d+/\d+/2017', accident_date):
             coords = [feature["geometry"]["coordinates"][1],
                       feature["geometry"]["coordinates"][0]]
-            print coords
             aurin_coords.append(coords)
 
 
@@ -61,15 +63,20 @@ server = pycouchdb.Server('http://admin:admin@localhost:5984')
 db = server.database('db_twitters')
 result = list(db.query('coordinates/id_str'))
 
+sid = SentimentIntensityAnalyzer()
+
 tweet_coords = []
 for tweet in result:
     data = tweet['value']
     for term in ALCOHOL_RELATED:
         tweet_msg = [word.lower() for word in data['text']]
         if term in tweet_msg:
-            coords = [data['coordinates']['coordinates'][1],
-                      data['coordinates']['coordinates'][0]]
-            tweet_coords.append(coords)
+            scores = sid.polarity_scores(data['text'])
+            sorted_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+            if sorted_scores[0][0] != 'neg':
+                coords = [data['coordinates']['coordinates'][1],
+                          data['coordinates']['coordinates'][0]]
+                tweet_coords.append(coords)
 
 """
 TWEET_FILE = 'data.json'
