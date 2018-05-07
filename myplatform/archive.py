@@ -1,19 +1,13 @@
----
-- hosts: all
-  become: true
-  roles:
-  - basic
 
-- hosts: dbmaster
+- hosts: couchdb
   become: true
   roles:
   - couchdb
-  - dbcluster
   vars_files:
   - ~/myplatform/roles/couchdb/vars/main.yml
 
 
-- hosts: dbslave
+- hosts: couchdb2
   become: true
   roles:
   - couchdb
@@ -27,9 +21,3 @@
   vars_files:
   - ~/myplatform/roles/harvestapp/vars/main.yml
 
-- hosts: webserver
-  become: true
-  roles:
-  - webserver
-  vars_files:
-  - ~/myplatform/roles/webserver/vars/main.yml

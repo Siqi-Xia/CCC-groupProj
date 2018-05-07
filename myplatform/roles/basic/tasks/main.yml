@@ -6,11 +6,12 @@
   with_items:
   - vim
   - python-pip
+  - git
   
 
 - name: "Make directories"
   file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
   with_items:
+    - /doc
     - /home/ubuntu/couchdb/
     - /mnt/couchdb/
-  tags: configure 

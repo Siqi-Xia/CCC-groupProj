@@ -1,10 +1,52 @@
+---
+
 - name: Update and upgrade apt packages
   apt: update_cache=yes cache_valid_time=600
 
 
 - name: "Installing softwares"
-  apt: name={{ item }} state=installed
+  apt: name={{ item }} state=present
   with_items:
-  - vim
   - python3
-  - python3-pip 
+  - python3-pip
+  tags: websf
+
+
+- name: "Install pip pkgs"
+  command: 'pip3 install {{ item }}'
+  sudo: yes
+  with_items:
+  - flask
+  tags: websf
+
+
+- name: "Create directories"
+  file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
+  with_items:
+  - /doc/webserver
+  tags: webinstall
+
+
+- name: "Clone git webserver repo"
+  command: git clone https://github.com/KathyXia/CCC-groupProj.git chdir={{ web_install_dir }}
+  sudo: yes
+  tags: webinstall
+
+
+- name: "Change git branch and pull"
+  command: git checkout --track remotes/origin/xuanyuduan-patch-1 chdir={{ web_install_dir }}/CCC-groupProj
+  sudo: yes
+  tags: webinstall
+
+- name: "Copy webserver app to setup location"
+  command: cp -r {{ web_install_dir }}/CCC-groupProj/web_qpp {{ web_install_dir }}
+  tags: webset
+
+- name: "Adjust host server"
+  command: sed -i 's/127.0.0.1/{{ inventory_hostname }}/g' {{ web_install_dir }}/web_qpp/app.py
+  sudo: yes
+  tags: webset
+
+- name: "Start webserver"
+  shell: cd {{ web_install_dir }}/web_qpp; nohup sudo python3 app.py </dev/null >/dev/null 2>&1 &
+  tags: webrun

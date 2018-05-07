@@ -21,7 +21,6 @@
 - name: "Create directories"
   file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
   with_items:
-  - /doc
   - /doc/twitter
   - /mnt/couchdb
   - /mnt/couchdb/twitters
