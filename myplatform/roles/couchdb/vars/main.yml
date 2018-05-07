@@ -1,0 +1,7 @@
+
+---
+
+couchdb_url: http://apache.mirror.amaze.com.au/couchdb/source/2.1.1/apache-couchdb-2.1.1.tar.gz
+db_install_dir: /home/ubuntu/couchdb
+db_exe_dir: /home/ubuntu/couchdb/apache-couchdb-2.1.1/rel/couchdb
+

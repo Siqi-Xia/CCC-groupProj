@@ -1,0 +1,73 @@
+
+---
+- name: "Update and upgrade apt packages"
+  apt: update_cache=yes cache_valid_time=600
+  tags: sf
+
+
+- name: "Install softwares"
+  apt: name={{ item }} state=present
+  with_items:
+    - build-essential
+    - pkg-config
+    - erlang
+    - libmozjs185-dev
+    - libcurl4-openssl-dev
+    - libicu-dev
+  tags: sf
+
+
+- name: "Download couchdb installation file"
+  get_url: url={{ couchdb_url }} dest={{ db_install_dir }}
+  sudo: yes
+  tags: packages
+
+- name: "Unarchive couchdb installation file"
+  unarchive: src={{ db_install_dir }}/apache-couchdb-2.1.1.tar.gz copy=no dest={{ db_install_dir }}
+  sudo: yes
+  tags: packages
+
+- name: "Remove erlang man"
+  file: path=/usr/lib/erlang/man state=absent
+  sudo: yes
+  tags: packages
+
+
+- name: "Run configure"
+  shell: ./configure chdir={{ db_install_dir }}/apache-couchdb-2.1.1
+  sudo: yes
+  tags: packages
+
+- make: 
+    chdir: '{{ db_install_dir }}/apache-couchdb-2.1.1'
+    target: release
+  sudo: yes
+  tags: install
+
+#- name: "Copy CouchDB to install location"
+#  command: cp -r {{ db_install_dir }}/apache-couchdb-2.1.1/rel {{ db_run_dir }}
+#  sudo: yes
+#  tags: install
+
+- name: "Change config files"
+  template: src={{ item }}.j2 dest={{ db_exe_dir }}/etc/{{ item }}
+  with_items:
+  - local.ini
+  - vm.args
+  - default.ini
+  tags: configure
+
+- name: "Change config files"
+  template: src={{ item }}.j2 dest={{ db_exe_dir }}/releases/2.1.1/{{ item }}
+  with_items:
+  - sys.config
+  tags: configure
+
+#- name: "Run couchdb"
+#  command: nohup ./couchdb 2>&1 & chdir={{ db_exe_dir }}/bin
+#  sudo: yes
+#  tags: execute
+
+
+
+

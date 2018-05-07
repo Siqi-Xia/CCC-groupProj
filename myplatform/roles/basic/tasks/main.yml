@@ -1,0 +1,16 @@
+- name: "Update and upgrade apt packages"
+  apt: update_cache=yes cache_valid_time=600
+
+- name: "Install packages"
+  apt: name={{ item }} state=present
+  with_items:
+  - vim
+  - python-pip
+  
+
+- name: "Make directories"
+  file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
+  with_items:
+    - /home/ubuntu/couchdb/
+    - /mnt/couchdb/
+  tags: configure 
