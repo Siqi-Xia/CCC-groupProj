@@ -1,0 +1,39 @@
+- name: Update and upgrade apt packages
+  apt: update_cache=yes cache_valid_time=600
+
+
+- name: "Installing softwares"
+  apt: name={{ item }} state=present
+  with_items:
+  - python-pip
+  tags: ansf
+
+- name: "Install pip pkgs"
+  command: 'pip3 install {{ item }}'
+  sudo: yes
+  with_items:
+  - folium
+  - nltk
+  - shapely
+  - pycouchdb
+  - pandas
+  tags: ansf
+
+
+- name: "Create directories"
+  file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
+  with_items:
+  - /doc/analysis
+  tags: aninstall
+
+
+- name: "Clone git analysis repo"
+  command: git clone https://github.com/KathyXia/CCC-groupProj.git chdir={{ als_install_dir }}
+  sudo: yes
+  tags: aninstall
+
+
+- name: "Change git branch and pull"
+  command: git checkout --track remotes/origin/Minghang chdir={{ als_install_dir }}/CCC-groupProj
+  sudo: yes
+  tags: aninstall

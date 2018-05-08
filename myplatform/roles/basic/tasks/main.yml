@@ -7,6 +7,7 @@
   - vim
   - python-pip
   - git
+  - curl
   
 
 - name: "Make directories"
@@ -15,3 +16,18 @@
     - /doc
     - /home/ubuntu/couchdb/
     - /mnt/couchdb/
+
+
+- name: "Mount volume file change"
+  filesystem:
+    fstype: ext4
+    dev: /dev/vdb
+  tags: mount
+
+- name: "Mount volume"
+  mount:
+    path: /mnt/couchdb
+    src: /dev/vdb
+    fstype: ext4
+    state: mounted
+  tags: mount
