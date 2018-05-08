@@ -1,5 +1,7 @@
 - name: "Update and upgrade apt packages"
   apt: update_cache=yes cache_valid_time=600
+  tags: basic
+
 
 - name: "Install packages"
   apt: name={{ item }} state=present
@@ -8,7 +10,7 @@
   - python-pip
   - git
   - curl
-  
+  tags: basic
 
 - name: "Make directories"
   file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
@@ -16,7 +18,7 @@
     - /doc
     - /home/ubuntu/couchdb/
     - /mnt/couchdb/
-
+  tags: basic
 
 - name: "Mount volume file change"
   filesystem:

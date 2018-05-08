@@ -7,29 +7,21 @@
 
 # Ex 1: Ungrouped hosts, specify before any group headers.
 [common]
-115.146.86.122
-
+115.146.86.175
 
 [harvestapp]
-115.146.86.122
+host1
 
-# Ex 2: A collection of hosts belonging to the 'webservers' group
 [webserver]
-
-115.146.86.175
-
-# Ex 3: A collection of database servers in the 'dbservers' group
+host2
 
 [analysis]
-115.146.86.175
-
+host2
 
 [dbmaster]
-115.146.86.122
-
+115.146.86.175
 
 
 [dbslave]
-115.146.86.175
-
+host2
 

@@ -2,7 +2,7 @@
 ---
 - name: "Update and upgrade apt packages"
   apt: update_cache=yes cache_valid_time=600
-  tags: sf
+  tags: couchdb
 
 
 - name: "Install softwares"
@@ -15,23 +15,23 @@
     - libcurl4-openssl-dev
     - libicu-dev
     - nodejs
-  tags: sf
+  tags: couchdb
 
 - name: "Unarchive couchdb installation file"
   unarchive: src={{ db_local_dir }}/apache-couchdb-2.1.1.tar.gz dest={{ db_install_dir }}
   sudo: yes
-  tags: packages
+  tags: couchdb
 
 - name: "Remove erlang man"
   file: path=/usr/lib/erlang/man state=absent
   sudo: yes
-  tags: packages
+  tags: couchdb
 
 
 - name: "Run configure"
   shell: cd {{ db_install_dir }}/apache-couchdb-2.1.1 ; ./configure && make release
   sudo: yes
-  tags: install
+  tags: couchdb
 
 
 - name: "Change config files"
@@ -40,17 +40,17 @@
   - local.ini
   - vm.args
   - default.ini
-  tags: configure
+  tags: couchdb
 
 - name: "Change config files"
   template: src={{ item }}.j2 dest={{ db_exe_dir }}/releases/2.1.1/{{ item }}
   with_items:
   - sys.config
-  tags: configure
+  tags: couchdb
 
 - name: "Run couchdb"
   shell: cd {{ db_exe_dir }}/bin; sudo nohup ./couchdb </dev/null> log.out 2>&1 &
-  tags: execute
+  tags: couchdb
 
 
 
