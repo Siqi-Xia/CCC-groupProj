@@ -35,8 +35,6 @@ def list_instance_info(res):
     print "Key: ", res.instances[0].key_name
     print res
 
-
-
 # create new instance
 def create_instance(ec2_conn):
     """
@@ -124,4 +122,7 @@ def create_attach_volume(ec2_conn, new_res):
     if ec2_conn.attach_volume(vol_new.id, res.instances[0].id, VOL_DEVICE):
         print "Volume attached successfully to: ", res.instances[0].private_ip_address
 
-
+    f = open("result.txt",'w')
+    result = res.instances[0].private_ip_address
+    f.write(str(result))
+    f.close()

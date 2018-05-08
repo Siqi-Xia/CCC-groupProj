@@ -4,22 +4,19 @@
   roles:
   - basic
 
-- hosts: dbmaster
-  become: true
-  roles:
-  - couchdb
-  - dbcluster
-  vars_files:
-  - ~/myplatform/roles/couchdb/vars/main.yml
-  - ~/myplatform/roles/dbcluster/vars/main.yml
-
-
 - hosts: dbslave
   become: true
   roles:
   - couchdb
   vars_files:
   - ~/myplatform/roles/couchdb/vars/main.yml
+
+- hosts: dbmaster
+  become: true
+  roles:
+  - dbcluster
+  vars_files:
+  - ~/myplatform/roles/dbcluster/vars/main.yml
 
 - hosts: analysis
   become: true
