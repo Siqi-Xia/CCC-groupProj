@@ -47,6 +47,7 @@ def save_file(db,file):
 	doc = json.load(fload)
 
 	db.save(doc)
+	
 
 def save_data(db,data,id):
 	##save json data into couchdb with a given id 
@@ -58,5 +59,6 @@ def save_data(db,data,id):
 
 	##connect to databse
 	db = server.database(db)
-
+	
+	db.delete(id)
 	db.save(_doc)
