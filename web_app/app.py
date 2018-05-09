@@ -4,6 +4,15 @@ from flask import Flask, render_template, send_file
 import chartkick
 import random as Random
 import couchdb
+<<<<<<< HEAD
+=======
+COUCHDB_SERVER = 'http://admin:admin@115.146.84.44:5984/'
+COUCHDB_DATABASE = 'db_test'
+DOC="scenario3"
+couch=couchdb.Server(COUCHDB_SERVER)
+db=couch[COUCHDB_DATABASE]
+#print(db[document])
+>>>>>>> 83ee7a06d6ad45b5b60a6918041e0ddfa74408e2
 
 app = Flask(__name__) 
 
