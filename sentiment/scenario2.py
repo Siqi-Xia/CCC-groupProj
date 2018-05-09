@@ -6,7 +6,6 @@ import couchdbProcesser as query
 from shapely.geometry import MultiPoint
 from shapely.geometry import Point
 import nltk
-import query
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
