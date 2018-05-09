@@ -1,13 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_file
 #https://www.aliyun.com/jiaocheng/481233.html
 # curl -X POST http://admin:admin@115.146.84.44:5984/db_test -d @result.json -H "Content-Type:application/json"
 import chartkick
-
 import random as Random
 import couchdb
 COUCHDB_SERVER = 'http://admin:admin@115.146.84.44:5984/'
 COUCHDB_DATABASE = 'db_test'
-DOC="scenario3"
+DOC="afaa708760db4e0f8ff3c000a626dde0"
 couch=couchdb.Server(COUCHDB_SERVER)
 db=couch[COUCHDB_DATABASE]
 #print(db[document])
@@ -78,26 +77,26 @@ def S3():
 
 @app.route('/S1/map1')
 def map1():
-    return render_template("crash_heatmap.html")
+    return send_file("/doc/analysis/sentiment/html/crash_heatmap.html")
 
 
 @app.route('/S1/map2')
 def map2():
-    return render_template("liquor_heatmap.html")
+    return send_file("/doc/analysis/sentiment/html/liquor_heatmap.html")
 
 
 @app.route('/S1/map3')
 def map3():
-    return render_template("tweet_heatmap.html")
+    return send_file("/doc/analysis/sentiment/html/tweet_heatmap.html")
 
 
 @app.route('/S2/map4')
 def map4():
-    return render_template("choropleth.html")
+    return rsend_file("/doc/analysis/sentiment/html/choropleth.html")
 
 @app.route('/S2/map5')
 def map5():
-    return render_template("choropleth1.html")
+    return send_file("/doc/analysis/sentiment/html/choropleth1.html")
 
 
 @app.route('/S3/chart')
