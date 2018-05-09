@@ -1,0 +1,136 @@
+body {
+	font-family: Arial, Helvetica, Sans-serif;
+	font-size: 12px;
+	color: #666666;
+	background-color: #ffffff;
+}
+
+
+#page_container {
+	width: auto;
+	margin:auto;
+
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+#main_nav {
+	background-color: #a8bdda;
+	height: 50px;
+	padding-left: 35px;
+	padding-top:10px;
+}
+
+#main_nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+#main_nav li {
+	float: left;
+	padding-right: 50px;
+	padding-left0;
+	font-size: 25px;
+}
+
+#main_nav a {
+	color:aliceblue;
+	text-decoration:none;
+}
+
+#main_nav a:hover {
+	color: #c78c7f;
+}
+
+#header {
+
+	height: 150px;
+	background-image: url(https://www.sas.com/en_us/insights/big-data/what-is-big-data/_jcr_content/par/styledcontainer_55de/image.img.jpg/1498756749547.jpg);	
+}
+
+#sidebar {
+	float: right;
+	width: 600px;
+	line-height: 18px;
+
+}
+
+#sidebar .padding {
+	padding: 25px;
+	line-height:25px;
+
+}
+
+#sidebar a {
+	text-decoration:none;
+	font-size:25px;
+	color:#b2bbb2
+}
+
+#sidebar a:hover {
+	color: #4a504a;
+}
+
+#content {
+	margin-right: 600px;
+	line-height: 18px;
+}
+
+#content .padding {
+	padding: 25px;
+}
+
+#footer {
+	clear: both;
+	height: 66px;
+	font-family: Tahoma, Arial, Helvetica, Sans-serif;
+	font-size: 10px;
+	color: #c9c9c9;
+	border-top: 1px solid #efefef;
+	padding: 13px 25px;
+	line-height: 18px;
+}
+
+#footer a {
+	color: #c9c9c9;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #db6d16;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+	float: right;
+	margin-top: auto;
+	margin-right: 31px;
+}
+
+#content h2 {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 15px;
+}
+
+#content p {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 15px;
+}
+
+#footer #altnav {
+	width: 350px;
+	float: right;
+	text-align: right;
+}
+
+
