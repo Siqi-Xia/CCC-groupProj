@@ -70,7 +70,9 @@ def graphic():
     db=couch[COUCHDB_DATABASE]
 #print(db[document])
 
-    data=db[DOC]['features']
+    
+    pre_data=db[DOC]['result']
+    data=pre_data['features']
 
 # data=[{u'late_slp_rank': 1, u'eco_index_rank': 1, u'Type': u'Feature', u'id': u'abc001', u'vic_loca_2': u'MELBOURNE'}, {u'late_slp_rank': 3, u'eco_index_rank': 10, u'Type': u'Feature', u'id': u'abc002', u'vic_loca_2': u'Calton'}, {u'late_slp_rank': 13, u'eco_index_rank': 9, u'Type': u'Feature', u'id': u'abc003', u'vic_loca_2': u'Parkville'}]
  
