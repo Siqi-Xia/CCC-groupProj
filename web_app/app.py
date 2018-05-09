@@ -92,7 +92,7 @@ def map3():
 
 @app.route('/S2/map4')
 def map4():
-    return rsend_file("/doc/analysis/sentiment/html/choropleth.html")
+    return send_file("/doc/analysis/sentiment/html/choropleth.html")
 
 @app.route('/S2/map5')
 def map5():
