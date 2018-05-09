@@ -105,7 +105,7 @@ for index in range(len(df)):
    		    }
     json_file['features'].append(feature_dict)
 
-query.save_data('db_test', json_file)
+query.save_data('db_test', json_file,scenario3)
 
 
 
