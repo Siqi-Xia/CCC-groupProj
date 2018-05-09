@@ -65,13 +65,27 @@ html, body {
 #sidebar .padding {
 	padding: 25px;
 	line-height:25px;
+	margin-top:40px;
 
+}
+
+#content a {
+	text-decoration:none;
+	font-size:25px;
+	color:#b2bbb2;
+	
 }
 
 #sidebar a {
 	text-decoration:none;
-	font-size:25px;
-	color:#b2bbb2
+	font-size:35px;
+	color:#b2bbb2;
+	line-height:60px;
+
+}
+
+#content a:hover {
+	color: #4a504a;
 }
 
 #sidebar a:hover {
@@ -81,6 +95,10 @@ html, body {
 #content {
 	margin-right: 600px;
 	line-height: 18px;
+}
+
+#content li {
+	line-height:28px;
 }
 
 #content .padding {
@@ -119,6 +137,7 @@ h1 {
 	margin: 0;
 	padding: 0;
 	padding-bottom: 15px;
+	font-size:30px;
 }
 
 #content p {
@@ -126,6 +145,11 @@ h1 {
 	padding: 0;
 	padding-bottom: 15px;
 	font-size:25px;
+	line-height:1.15;
+}
+
+#content ul {
+	font-size:20px;
 	line-height:1.15;
 }
 

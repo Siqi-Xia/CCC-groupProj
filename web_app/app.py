@@ -78,26 +78,26 @@ def S3():
 
 @app.route('/S1/map1')
 def map1():
-    return render_template("/doc/analysis/sentiment/html/crash_heatmap.html")
+    return render_template("crash_heatmap.html")
 
 
 @app.route('/S1/map2')
 def map2():
-    return render_template("/doc/analysis/sentiment/html/liquor_heatmap.html")
+    return render_template("liquor_heatmap.html")
 
 
 @app.route('/S1/map3')
 def map3():
-    return render_template("/doc/analysis/sentiment/html/tweet_heatmap.html")
+    return render_template("tweet_heatmap.html")
 
 
 @app.route('/S2/map4')
 def map4():
-    return render_template("/doc/analysis/sentiment/html/choropleth.html")
+    return render_template("choropleth.html")
 
 @app.route('/S2/map5')
 def map5():
-    return render_template("/doc/analysis/sentiment/html/choropleth1.html")
+    return render_template("choropleth1.html")
 
 
 @app.route('/S3/chart')
