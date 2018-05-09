@@ -63,7 +63,7 @@ html, body {
 }
 
 #sidebar .padding {
-	padding: 25px;
+	padding: auto;
 	line-height:25px;
 	margin-top:40px;
 
