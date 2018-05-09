@@ -96,16 +96,16 @@ with open(TWEET_FILE) as f3:
 
 map_crash = folium.Map(location=[-37.814, 144.96332], zoom_start=8)
 HeatMap(aurin_coords, radius=8).add_to(map_crash)
-file_path1 = r'/doc/analysis/sentiment/html/crash_heatmap.html'
+file_path1 = r'/doc/webserver/web_app/templates/crash_heatmap.html'
 map_crash.save(file_path1)
 
 map_liquor = folium.Map(location=[-37.814, 144.96332], zoom_start=8)
 HeatMap(liquor_coords, radius=8).add_to(map_liquor)
-file_path2 = r'/doc/analysis/sentiment/html/liquor_heatmap.html'
+file_path2 = r'/doc/webserver/web_app/templates/liquor_heatmap.html'
 map_liquor.save(file_path2)
 
 map_tweet = folium.Map(location=[-37.814, 144.96332], zoom_start=8)
 HeatMap(tweet_coords).add_to(map_tweet)
-file_path3 = r'/doc/analysis/sentiment/html/tweet_heatmap.html'
+file_path3 = r'/doc/webserver/web_app/templates/tweet_heatmap.html'
 map_liquor.save(file_path3)
 

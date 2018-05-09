@@ -100,7 +100,7 @@ m.choropleth(
     line_opacity=0.2
 )
 
-file_path = r'/doc/analysis/sentiment/html/choropleth.html'
+file_path = r'/doc/webserver/web_app/templates/choropleth.html'
 folium.LayerControl().add_to(m)
 m.save(file_path)
 
@@ -123,7 +123,7 @@ m1.choropleth(
     line_opacity=0.2
 )
 
-file_path1 = r'/doc/analysis/sentiment/html/choropleth1.html'
+file_path1 = r'/doc/webserver/web_app/templates/choropleth1.html'
 folium.LayerControl().add_to(m1)
 m1.save(file_path1)
 
