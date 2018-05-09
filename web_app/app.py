@@ -65,7 +65,7 @@ def map5():
 def graphic():
     COUCHDB_SERVER = 'http://admin:admin@115.146.84.44:5984/'
     COUCHDB_DATABASE = 'db_test'
-    DOC="2dc24c9c8b0845abb282c2e23b587744"
+    DOC="scenario3"
     couch=couchdb.Server(COUCHDB_SERVER)
     db=couch[COUCHDB_DATABASE]
 #print(db[document])
