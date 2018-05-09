@@ -55,4 +55,4 @@
   - scenario1.py
   - scenario2.py
   - scenario3.py
-  tags: analysisrun
+  tags: analysis
