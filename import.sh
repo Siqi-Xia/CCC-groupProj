@@ -6,7 +6,7 @@ for file in ./*
 	do
 		if [ "${file##*.}"x = "json"x ] 
     		then
-    			python3 /home/ubuntu/couchdbProcess/checkDuplication.py http://admin:admin@127.0.0.1:5984/ db_twitters $file
+    			python3 /mnt/couchdb/twitter/checkDuplication.py http://admin:admin@127.0.0.1:5984/ db_twitters $file
 			if [ $?==0 ]
 			then
 				curl -d @$file -H "Content-type: application/json" -X POST http://admin:admin@127.0.0.1:5984/db_twitters
