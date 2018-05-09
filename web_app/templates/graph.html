@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='master.css')}}">
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='chart.css')}}">
 </head>
 <body>
 	<div id="page_container">
@@ -36,16 +36,7 @@
 		</div>
 		<div id="content">
 		<div class="padding">
-		<h2><img src="http://www.dudmc.com/site/assets/files/1769/melbourn_at_night1.jpg" width="54" height="14" alt="About" />image 1</h2>
-		<p>
-			fesiogjierogjoeijoijhgrogjoijgiorejgiosjigrojresoigjiroe
-		</p>
-		<h2>image 2</h2>
-		<p>
-			kvdnskvlnfsklbnfk<br/>
-			rgsrsgrg
-		</p>
-
+		
     <table>
             <tr>
               <td>CITY</td>
@@ -53,14 +44,19 @@
               <td>ECO RANK</td>
               <td>DIFF</td>
             </tr>
+        
+    
         {% for row in rows %}
-            <tr>
-              <td>{{ row[0]|tojson|safe }}</td>
-              <td>{{ row[1]|tojson|safe }}</td>
-              <td>{{ row[2]|tojson|safe }}</td>
-              <td>{{ row[3]|tojson|safe }}</td>
-            </tr>
+           		<tr>
+              		<td>{{ row[0]|tojson|safe }}</td>
+             		<td>{{ row[1]|tojson|safe }}</td>
+             		<td>{{ row[2]|tojson|safe }}</td>
+              		<td>{{ row[3]|tojson|safe }}</td>
+
+            	</tr>
+          
         {% endfor %}
+        
     </table>
   
 

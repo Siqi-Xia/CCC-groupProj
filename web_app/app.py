@@ -7,7 +7,7 @@ import random as Random
 import couchdb
 COUCHDB_SERVER = 'http://admin:admin@115.146.84.44:5984/'
 COUCHDB_DATABASE = 'db_test'
-DOC="f49dca87e0409f698691769ae4c6beac"
+DOC="afaa708760db4e0f8ff3c000a626dde0"
 couch=couchdb.Server(COUCHDB_SERVER)
 db=couch[COUCHDB_DATABASE]
 #print(db[document])
@@ -18,14 +18,36 @@ data=db[DOC]['features']
 app = Flask(__name__)  
 print(chartkick.js())
 print(app.static_folder)
-app.jinja_env.add_extension("chartkick.ext.charts")  
-col1=[x['vic_loca_2'] for x in data]
-col2=[x['late_slp_rank'] for x in data]
-col3=[x['eco_index_rank'] for x in data]
-col4=[x[0]-x[1] for x in zip(col2,col3)]
+app.jinja_env.add_extension("chartkick.ext.charts")
+col1=[]
+col2=[]
+col3=[]
+col4=[]
 bar_data={}
+for x in data:
+    if x['late_slp_rank'] is None or x['eco_index_rank'] is None:
+        continue
+    else:
+        col1.append(x['vic_loca_2'])
+        col2.append(x['late_slp_rank'])
+        col3.append(x['eco_index_rank'])
+        col4.append(x['late_slp_rank']-x['eco_index_rank'])
+
+  #  if x['late_slp_rank'] != 'null' and x['eco_index_rank'] != 'null':
+ #       print 
+ #       col1=[x['vic_loca_2'] for x in data]
+  #      col2=[x['late_slp_rank'] for x in data]
+   #     col3=[x['eco_index_rank'] for x in data]
+    #    col4=[x[0]-x[1] for x in zip(col2,col3bar_data={}
 for x in range(len(col1)):
     bar_data[col1[x]]=col4[x]
+
+######################
+new_col1=col1[0:15]
+new_col2=col2[0:15]
+new_col3=col3[0:15]
+new_col4=col4[0:15]
+######################
 
 print(bar_data)
 chartdata = {u'Chrome': 0, u'Opera': -7, u'Firefox': 4}
@@ -56,31 +78,31 @@ def S3():
 
 @app.route('/S1/map1')
 def map1():
-    return render_template("visualization.html")
+    return render_template("/doc/analysis/sentiment/html/crash_heatmap.html")
 
 
 @app.route('/S1/map2')
 def map2():
-    return render_template("visualization.html")
+    return render_template("/doc/analysis/sentiment/html/liquor_heatmap.html")
 
 
 @app.route('/S1/map3')
 def map3():
-    return render_template("visualization.html")
+    return render_template("/doc/analysis/sentiment/html/tweet_heatmap.html")
 
 
 @app.route('/S2/map4')
 def map4():
-    return render_template("visualization2.html")
+    return render_template("/doc/analysis/sentiment/html/choropleth.html")
 
 @app.route('/S2/map5')
 def map5():
-    return render_template("visualization2.html")
+    return render_template("/doc/analysis/sentiment/html/choropleth1.html")
 
 
 @app.route('/S3/chart')
 def graphic():
-	return render_template("graph.html",rows=zip(col1,col2,col3,col4),bar_data=bar_data)
+	return render_template("graph.html",rows=zip(new_col1,new_col2,new_col3,new_col4),bar_data=bar_data)
 
 
 
