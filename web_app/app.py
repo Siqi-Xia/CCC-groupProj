@@ -6,7 +6,7 @@ import random as Random
 import couchdb
 COUCHDB_SERVER = 'http://admin:admin@115.146.84.44:5984/'
 COUCHDB_DATABASE = 'db_test'
-DOC="afaa708760db4e0f8ff3c000a626dde0"
+DOC="scenario3"
 couch=couchdb.Server(COUCHDB_SERVER)
 db=couch[COUCHDB_DATABASE]
 #print(db[document])
