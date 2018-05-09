@@ -1,10 +1,9 @@
 #!/usr/bin/env python3.5
 
-"""
-Boto demo for instance
-Team 52
-2018
-"""
+'''
+Boto execution main function
+'''
+
 import time
 from nectar import ec2_conn
 import build as build

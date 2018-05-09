@@ -1,2 +1,4 @@
 ---
 als_install_dir: /doc/analysis
+als_run_dir: /doc/analysis/sentiment
+als_local_dir: ~/doc

@@ -9,7 +9,7 @@
   tags: analysis
 
 - name: "Install pip pkgs"
-  command: 'pip3 install {{ item }}'
+  command: 'pip install {{ item }}'
   sudo: yes
   with_items:
   - folium
@@ -37,3 +37,22 @@
   command: git checkout --track remotes/origin/Minghang chdir={{ als_install_dir }}/CCC-groupProj
   sudo: yes
   tags: analysis
+
+
+- name: "Unarchive data  file"
+  unarchive: src={{ als_local_dir }}/data.tar.gz dest={{ als_install_dir }}
+  sudo: yes
+  tags: analysis
+
+- name: "Copy analysis app to setup location"
+  command: cp -r {{ als_install_dir }}/CCC-groupProj/sentiment {{ als_install_dir }}
+  sudo: yes
+  tags: analysis
+
+- name: "Start analysis app scenarios in background"
+  shell: cd {{ als_run_dir }}; nohup sudo python {{ item }} </dev/null >/dev/null 2>&1 &
+  with_items:
+  - scenario1.py
+  - scenario2.py
+  - scenario3.py
+  tags: analysisrun

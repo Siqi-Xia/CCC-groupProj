@@ -7,24 +7,18 @@
 
 # Ex 1: Ungrouped hosts, specify before any group headers.
 [common]
-115.146.84.173
-
-[webserver]
-115.146.84.173
-
-
-[harvestapp]
-115.146.86.85
-115.146.84.44
-host
+115.146.86.122
 
 
 [analysis]
-115.146.84.173
+115.146.86.122
+
+[webserver]
+115.146.86.122
+
 
 [dbmaster]
 115.146.84.44
 
 [dbslave]
-host
-
+115.146.86.122
