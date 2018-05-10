@@ -22,7 +22,6 @@
   file: path={{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
   with_items:
   - /doc/twitter
-  - /mnt/couchdb
   - /mnt/couchdb/twitters
   tags: harvest
 
@@ -38,8 +37,13 @@
   shell: cd {{ twitter_app_dir }}; nohup sudo bash twitter_harvest.sh </dev/null >/dev/null 2>&1 &
   tags: harvest
 
-#- name: "Execute twitter harvest app"
-#  command: 'sudo bash twitter_harvest.sh 2>&1 & chdir={{ twitter_app_dir }}'
-#  tags: apprun
+- name: "Check duplicate and store harvested twitters into db and "
+  template: src={{ item }}.j2 dest={{ twitter_file_dir }}/{{ item }}
+  with_items:
+  - checkDuplication.py
+  - import.sh
+  tags: harvest
 
-
+- name: "start twitter storage process in background"
+  shell: cd {{ twitter_file_dir }}; nohup sudo bash import.sh </dev/null >/dev/null 2>&1 &
+  tags: harvest

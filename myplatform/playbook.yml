@@ -18,19 +18,19 @@
   vars_files:
   - ~/myplatform/roles/dbcluster/vars/main.yml
 
-- hosts: analysis
-  become: true
-  roles:
-  - analysis
-  vars_files:
-  - ~/myplatform/roles/analysis/vars/main.yml
-
 - hosts: harvestapp
   become: true
   roles:
   - harvestapp
   vars_files:
   - ~/myplatform/roles/harvestapp/vars/main.yml
+
+- hosts: analysis
+  become: true
+  roles:
+  - analysis
+  vars_files:
+  - ~/myplatform/roles/analysis/vars/main.yml
 
 - hosts: webserver
   become: true

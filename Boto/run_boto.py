@@ -21,12 +21,12 @@ def main():
     print '---------------------------------------------------------'
 
     #print all images info
-#    build.list_images(ec2_conn)
+    build.list_images(ec2_conn)
     print '---------------------------------------------------------'
 
 
     #list all security groups
-#    build.list_security_groups(ec2_conn)
+    build.list_security_groups(ec2_conn)
     print '---------------------------------------------------------'
 
     # Create a new instance;
@@ -36,7 +36,7 @@ def main():
     print '---------------------------------------------------------'
 
     #print all volumn info
-#    build.list_volumes(ec2_conn)
+    build.list_volumes(ec2_conn)
     print '---------------------------------------------------------'
 
     #create and attach volume to new instance

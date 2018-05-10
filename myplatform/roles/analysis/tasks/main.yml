@@ -49,6 +49,12 @@
   sudo: yes
   tags: analysis
 
+- name: "Create directories"
+  file: path={{ als_run_dir }}/{{ item }} state=directory mode=0755 owner=ubuntu group=ubuntu
+  with_items:
+  - html
+  tags: analysis
+
 - name: "Start analysis app scenarios in background"
   shell: cd {{ als_run_dir }}; nohup sudo python {{ item }} </dev/null >/dev/null 2>&1 &
   with_items:

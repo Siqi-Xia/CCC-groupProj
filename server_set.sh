@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 
 
-echo "Set up instance"
-python Boto/run_boto.py
-var=$(cat result.txt)
-
-echo $var
-
-xargs sed -i '' "s/host/$var/g" myplatform/hosts
-
 
 echo "Run basic settings"
 ansible-playbook -s myplatform/playbook.yml --tags "basic"
