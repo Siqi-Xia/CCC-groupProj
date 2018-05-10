@@ -26,3 +26,4 @@ couchdbProcesser.create_view("database","map","reduce","key)
 Redundant
 -----------
 
+python deduplicate.py
