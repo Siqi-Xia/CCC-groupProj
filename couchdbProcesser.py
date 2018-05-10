@@ -70,13 +70,20 @@ def save_file(db,file):
 
 	db.save(doc)
 
-def save_data(db,data):
-	##save json data into couchdb
+def save_data(db,data,id):
+	##save json data into couchdb with a given id 
+
+	_doc ={
+		"_id":id,
+		"result":data,
+	} 
 
 	##connect to databse
 	db = server.database(db)
 
-	db.save(data)
+	##delete before save
+	db.delete(id)
+	db.save(_doc)
 
 
 ############################################################################################################################
