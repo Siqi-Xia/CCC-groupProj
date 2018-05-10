@@ -10,5 +10,5 @@ chartkick
 
 
 
-python app.py to run the web page
+"python app.py" to run the web page
 ----------------------
