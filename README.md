@@ -18,3 +18,15 @@ Xuanyu Duan  877640
 
 Minghan Chi  879544
 
+issues addressed in each branch:
+--------------
+
+master      : boto + ansiable + shell
+
+katherinpze : tweet harvester
+
+xuanyuduan  : visualisation
+
+Minghang    ：sentiment analysis
+
+sheng       ：CouchDB process and MapReduce
