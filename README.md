@@ -1,12 +1,12 @@
 # CCC-groupProj
-==================================
+===============
 For CCC group project code sharing
 
-analyse tweets post in 
-----------------------
+analyse tweets post in Melbourne
+--------------------------------
 
 Team 52:
-----------------------------
+--------
 Siqi Xia     902915
 Sheng Tang   841170
 Zhao Peng    899126
