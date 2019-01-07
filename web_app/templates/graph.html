@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='chart.css')}}">
+</head>
+<body>
+	<div id="page_container">
+		<div id="main_nav">
+		 
+			<ul>
+				<li id="home_page"><a href="/">Home</a>
+				</li>
+				
+			</ul>
+		
+		</div>
+		<div id="header">
+			<h1>
+				<img src="https://pbs.twimg.com/profile_images/822085733376790528/VHg0pqH__400x400.jpg" width="128" height="128" alt="Design" border="0" />
+			</h1>
+		</div>
+		<div id="sidebar">
+		<div class="padding">
+		<p>
+			 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="{{ url_for('static', filename='chartkick.js') }}"></script>
+
+    {% column_chart bar_data%}
+		</p>
+
+		</div>
+		</div>
+		<div id="content">
+		<div class="padding">
+		
+    <table>
+            <tr>
+              <td>CITY</td>
+              <td>LATE SLEEP</td>
+              <td>ECO RANK</td>
+              <td>DIFF</td>
+            </tr>
+        
+    
+        {% for row in rows %}
+           		<tr>
+              		<td>{{ row[0]|tojson|safe }}</td>
+             		<td>{{ row[1]|tojson|safe }}</td>
+             		<td>{{ row[2]|tojson|safe }}</td>
+              		<td>{{ row[3]|tojson|safe }}</td>
+
+            	</tr>
+          
+        {% endfor %}
+        
+    </table>
+  
+
+		</div>
+		</div>
+		<div id="footer">
+		COMP90024_2018_SM1: Cluster and Cloud Computing
+
+		</div>
+	</div>
+    
+</body>
+</html>
+
+
+ 

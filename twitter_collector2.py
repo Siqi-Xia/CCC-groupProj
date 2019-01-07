@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> origin/xuanyuduan-patch-1
 
 #twitter time
 
@@ -10,27 +6,6 @@ import tweepy
 from tweepy import Stream
 from tweepy import StreamListener 
 from tweepy import OAuthHandler
-<<<<<<< HEAD
-import os 
-import json
-import numpy as np
-from datetime import *
-
-
-
-consumer_key = "u8Kx69mcOFPHbd309uKDQfDOA"
-consumer_secret = "gkrfQLzeXoU0oOxODIk0weowzJc8opUIzop5UlpaAEQLyyWmhy"
-access_token = "381766751-mfUc9PGRIJ7ZuAFRoREuPWz6HaS7SkGQFyXlf2vd"
-access_secret = "XXYUWEc63Dvp68mJKwibIUJ7wFlByHf0O4SK65WTzHO6J"
-#consumer_key = "qaFn3UVPmprNsqlF25TtSszL5"
-#consumer_secret = "r5cLVPV5ZrEWclssU7MWGjBZxtm9HKTT8Z0uQfK0po20cnDwKh"
-#access_token = "989757353258975234-XCMOO4eR0XBQdJhYPvAHJ6AqRIkSSuj"
-#access_secret = "bsmeX1gMVOWaf8xZ6hBuq0Se2qF8SY9tNFfuZcKQUbd4X"
-
-TWEET_NUM=5000
-#filename=datetime.now().strftime("%Y%m%d%H%M%S")+".json"
-#print("output file name:",filename)
-=======
 import json
 import numpy as np
 from datetime import *
@@ -39,10 +14,9 @@ consumer_secret = "6aZ7T4Au0Tv4M2C5p7gCQVapTNy8rcF6kGlAwilculNqcP8fuH"
 access_token = "3074259759-Llu1Uz6SGywiT9P9B7AdkO85t75VMYNwQmtB620"
 access_secret = "nbjVpbWBAChf8RSXVLkMv9PgZPs3C6Cbi3QTYJDtbM5wZ"
 
-TWEET_NUM=5
-filename=datetime.now().strftime("%Y%m%d%H%M%S")+".json"
+TWEET_NUM=10000
+filename="/mnt/couchdb/twitter/"+datetime.now().strftime("%Y%m%d%H%M%S")+".json"
 print("output file name:",filename)
->>>>>>> origin/xuanyuduan-patch-1
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
  
@@ -63,22 +37,8 @@ bounding_box=[np.min(bb[:,0]),np.min(bb[:,1]),np.max(bb[:,0]),np.max(bb[:,1])]
 print("bounding box is",bounding_box)
 place_id = places[0].id
 
-<<<<<<< HEAD
-
-
-
 print("============================")
 
-if os.path.exists('data'):
-    print("folder exists")
-else:
-    os.mkdir('data')
-    print ("new data folder.")
-
-=======
-print("============================")
-
->>>>>>> origin/xuanyuduan-patch-1
 @classmethod
 def parse(cls, api, raw):
     status = cls.first_parse(api, raw)
@@ -98,33 +58,6 @@ class MyListener(StreamListener):
 
     def on_data(self, data):
         try:
-<<<<<<< HEAD
-            not_duplicated = True
-            #add database operation here....
-            #idmap = list(db.query("idmap/id"))
-            #lj=json.loads(data)
-            #for item in idmap:
-             #   if lj["id"] == item["key"]:
-              #      not_duplicated = False
-            #print(idmap)
-            #print(type(lj))
-            #print(lj["id"])    
-            if not_duplicated :
-                db.save(lj)
-                self.num_tweets+=1
-                filename="data/"+datetime.now().strftime("%Y%m%d%H%M%S")+".json"
-                print("output file name:",filename)
-                print("sampled %d data"%self.num_tweets)
-                with open(filename,"a",encoding="utf-8") as f2:
-                    #if self.firstdata!=1:
-                    #  f2.write(",\n")
-                    lj=json.loads(data)
-                    #self.firstdata=0
-                    x=json.dumps(lj)
-                    f2.write(x)
-            else:
-                print("duplicated twit")
-=======
             #add database operation here....
             
             self.num_tweets+=1
@@ -136,7 +69,6 @@ class MyListener(StreamListener):
                 self.firstdata=0
                 x=json.dumps(lj)
                 f2.write(x)
->>>>>>> origin/xuanyuduan-patch-1
 
 
         except BaseException as e:
@@ -194,24 +126,14 @@ twitter_stream = Stream(auth, MyListener())
 
 print("stream connected!")
 
-<<<<<<< HEAD
-#with open(filename,"w",encoding="utf-8") as f2:
-   # f2.write("{\"total_rows\":%d,\"offset\":0,\"rows\":[\n"%TWEET_NUM)
-=======
 with open(filename,"w",encoding="utf-8") as f2:
-    f2.write("{\"total_rows\":%d,\"offset\":0,\"rows\":[\n"%TWEET_NUM)
->>>>>>> origin/xuanyuduan-patch-1
+    f2.write("{\"docs\":[\n")
 
 #its said that filter can search data in 7 days, while api.search can only search data in a much shorter time
 twitter_stream.filter(locations=bounding_box)  #track=['sleep']   #add hashtag
 
-<<<<<<< HEAD
-#with open(filename,"a",encoding="utf-8") as f2:
-    #f2.write("\n]}\n")
-=======
 with open(filename,"a",encoding="utf-8") as f2:
     f2.write("\n]}\n")
->>>>>>> origin/xuanyuduan-patch-1
 # tweets = api.search(q="place:%s" % place_id,count=1000)
 # for tweet in tweets:
 #     print( tweet.text + " | " + tweet.place.name if tweet.place else "Undefined place")
